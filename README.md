@@ -6,11 +6,18 @@ How it works:
 1. Get the script via git or download.
     git clone https://github.com/andywalden/esm_query_tester
     
-2. Plug in the ESM username, password and IP/hostname at the top of the esm_query_test.py file.
+Optionally create a virtual python environment.
+    cd esm_query_tester
+    virtualenv -ppython3 env
 
-3. Modify the query.yaml file to the desired query.
+2. Install the required modules.
+    pip install -r requirements.txt
+    
+3. Plug in the ESM username, password and IP/hostname at the top of the esm_query_test.py file.
 
-4. Run the script:
+4. Modify the query.yaml file to the desired query.
+
+5. Run the script:
 
 ```css
 $ python esm_query_tester.py
