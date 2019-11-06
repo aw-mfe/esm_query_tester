@@ -1,0 +1,441 @@
+# This is the YAML configuration file to query McAfee ESM from the API
+#
+# The 4 parts of this file are: filters, fields, timeframe and sorting
+# 
+# Each section is explained and shown as an example below.
+#
+# Since this is a yaml file, colons, dashes and spacing matter.
+#  
+# filters: section 
+#
+# A query without parameters returns all items so filters are applied
+# to further reduce the amount of data returned. 
+# 
+# yaml format: Each filter has 4 keywords with a space and a dash in front of the top keyword.
+#
+# field: The field the filter should be applied to. List of fields under fields:
+#
+# op: The operation that be used with the filter. List of ops in example.
+#
+# type: Type of the value, either: field, watchlist or variable
+#
+# value: If a field, the raw text, if a watchlist, the watchlist name, 
+#        if variable, the variable name
+#
+#
+# Valid Op types for filters:
+#
+# IN
+# NOT_IN
+# GREATER_THAN
+# LESS_THAN
+# GREATER_OR_EQUALS_THAN
+# LESS_OR_EQUALS_THAN
+# NUMERIC_EQUALS
+# NUMERIC_NOT_EQUALS
+# DOES_NOT_EQUAL
+# EQUALS
+# CONTAINS
+# DOES_NOT_CONTAIN
+# REGEX
+
+
+filters: 
+#  - field: SrcIP
+#    op: EQUALS
+#    type: field
+#    value: ""
+#  - field: IPSID
+#    op: EQUALS
+#    type: field
+#    value: "144116287604260864"
+    
+#  - field: SrcIP
+#    op: IN
+#    type: watchlist
+#    value: test
+#  - field: DSIDSigID
+#    op: EQUALS
+#    type: field
+#    value: "65-5000036"
+    
+#  - field: DSIDSigID
+#    op: EQUALS
+#    type: field
+#    value: ""
+
+ - field: NormID
+   op: EQUALS
+   type: field
+   value: 408977408  
+
+# The timeframe section either uses custom start and end times or one of the
+# predefined time keywords listed below. This the list of fields to reference
+# when specifying a field for a filter.
+# 
+# Either specify start and end or custom but not both. CURRENT_DAY is the default.
+# Date format for start and end is: 2018-03-26T00:00:00.000Z
+# 
+#
+# yaml format: Just a space in front of key each word, no dashes.
+#
+# LAST_MINUTE
+# LAST_10_MINUTES
+# LAST_30_MINUTES
+# LAST_HOUR
+# CURRENT_DAY
+# PREVIOUS_DAY
+# LAST_24_HOURS
+# LAST_2_DAYS
+# LAST_3_DAYS
+# CURRENT_WEEK
+# PREVIOUS_WEEK
+# CURRENT_MONTH
+# PREVIOUS_MONTH
+# CURRENT_QUARTER
+# PREVIOUS_QUARTER
+# CURRENT_YEAR
+# PREVIOUS_YEAR
+    
+timeframe:
+ #predefined: CURRENT_DAY
+ #predefined: PREVIOUS_DAY
+ predefined: LAST_HOUR
+ #predefined: LAST_30_MINUTES
+ #start: 2019-07-31T00:00:00.000Z
+ #stop: 2019-08-01T00:00:00.000Z
+
+# sort: section
+#
+# Customize the order of the results by specifying the field to sort on and
+# whether it should be ASCENDING or DESCENDING.  
+#
+# The sort field needs to be one of the uncommented fields in the fields section.
+
+sort:
+ order: DESCENDING
+ field: FirstTime
+
+
+# Include line total at the bottom of the output?
+linetotal: False
+
+# Number of rows to returned
+limit: 100 
+ 
+
+# fields: section
+# 
+# This section defines what fields will be returned for the query. The full list 
+# of valid fields is listed below. The most common fields have been uncommented.
+# Comment or uncomment the fields to customize.
+#
+# yaml format: Every field has a space and dash in front.
+
+ 
+fields:
+# - FirstTime
+ - FirstTime
+
+ - EventCount 
+# - LastTime 
+# - Access_Mask
+# - Access_Privileges
+# - Access_Resource
+# - Action.Name
+# - Agent_GUID
+# - Action
+# - ASNGeoDst
+# - DstMac
+# - DstPort
+# - ZoneDst
+# - DSID
+ - DSIDSigID
+# - WriteTime
+
+# - FirstTime
+# - Flow
+ - IPSIDAlertID
+ - AlertID
+ - IPSID
+
+ - Rule.NormID
+# - Protocol
+# - Reviewed
+# - Severity
+ - SigID
+# - ASNGeoSrc
+ - SrcIP
+# - SrcMac
+# - SrcPort
+# - ZoneSrc
+# - VLan
+# - Analyzer_DAT_Version
+# - App_Layer_Protocol
+# - AppID
+# - Application_Protocol
+# - Area
+# - Users.Name
+# - Attacker_IP
+# - Attribute_Type
+# - Authentication_Type
+# - Authoritative_Answer
+# - AvgSeverity
+# - Bcc
+# - Caller_Process
+# - Catalog_Name
+# - Category
+# - Cc
+# - Class.Name
+# - Class.Priority
+# - Client_Version
+# - CnC_Host
+# - CommandID
+# - Confidence
+# - Contact_Name
+# - Contact_Nickname
+# - Cookie
+# - Creator_Name
+# - DAT_Version
+# - Database_GUID
+# - Database_ID
+# - Database_Name
+# - Datacenter_ID
+# - Datacenter_Name
+# - DB2_Plan_Name
+# - Delivery_ID
+# - Description
+# - GUIDDst
+ - DstIP
+# - Zone_ZoneDst.Name
+# - Destination_Directory
+# - Destination_Filename
+# - Destination_Hostname
+# - Destination_Logon_ID
+# - Destination_Network
+# - Destination_UserID
+# - Destination_Zone
+# - Detection_Method
+# - Device_Action
+# - Device_Confidence
+# - Device_IP
+# - Device_Port
+# - Device_URL
+# - Direction
+# - Directory
+# - DNS - Class
+# - DNS - Class_Name
+# - DNS - Query
+# - DNS - Response_Code
+# - DNS - Response_Code_Name
+# - DNS - Type
+# - DNS - Type_Name
+# - DNS_Class
+# - DNS_Name
+# - DNS_Server_IP
+# - DNS_Type
+ - DomainID
+# - GeoLoc_ASNGeoDst.Msg
+# - GeoLoc_ASNGeoDst.Latitude
+# - GeoLoc_ASNGeoDst.Longitude
+# - GeoLoc_ASNGeoDst.XCoord
+# - GeoLoc_ASNGeoDst.YCoord
+# - End_Page
+# - Engine_List
+# - Sequence
+# - SessionID
+# - Trusted
+# - Event_Class
+# - External_Application
+# - External_DB2_Server
+# - External_Device_ID
+# - External_Device_Name
+# - External_Device_Type
+# - External_EventID
+# - External_Hostname
+# - External_SessionID
+# - External_SubEventID
+# - Facility
+# - File_Hash
+# - File_ID
+# - File_Operation
+# - File_Operation_Succeeded
+# - File_Path
+# - File_Type
+# - Filename
+# - FlowID
+# - From
+# - From_Address
+# - FTP_Command
+# - Grid_Master_IP
+# - Group_Name
+# - Handheld_ID
+# - Handle_ID
+# - Hash
+# - Hash_Type
+# - Hops
+# - HostID
+# - Incident_ID
+# - Incoming_ID
+# - Instance_GUID
+# - Interface
+# - Interface_Dest
+# - IPS.Name
+# - Job_Name
+# - Job_Type
+# - Language
+# - LastTime_usec
+# - Local_User_Name
+# - Logical_Unit_Name
+# - Logon_Type
+# - LPAR_DB2_Subsystem
+# - Mail_ID
+# - Mailbox
+# - Mainframe_Job_Name
+# - Malware_Insp_Action
+# - Malware_Insp_Result
+# - Management_Server
+# - Message_ID
+# - Message_Text
+# - Method
+# - NAT_Details
+# - New_Reputation - ATD_File
+# - New_Reputation - GTI_Cert
+# - New_Reputation - GTI_File
+# - New_Reputation - TIE_Cert
+# - New_Reputation - TIE_File
+# - New_Value
+ - Rule_NDSNormSigID.msg
+# - NTP_Client_Mode
+# - NTP_Offset_To_Monitor
+# - NTP_Opcode
+# - NTP_Request
+# - NTP_Server_Mode
+# - Num_Copies
+# - Object_GUID
+# - Object_Type
+# - ObjectID
+# - Old_Reputation - ATD_File
+# - Old_Reputation - GTI_Cert
+# - Old_Reputation - GTI_File
+# - Old_Reputation - TIE_Cert
+# - Old_Reputation - TIE_File
+# - Old_Value
+# - Operating_System
+# - Organizational_Unit
+# - Parent_File_Hash
+# - PCAP_Name
+# - PID
+# - Policy_ID
+# - Policy_Name
+# - Priority
+# - Privileged_User
+# - Privileges
+# - Process_Name
+# - Query_Response
+# - Queue_ID
+# - Reason
+# - Recipient_ID
+# - Referer
+# - Registry - Key
+# - Registry - Value
+# - Registry_Key
+# - Registry_Value
+# - RemCaseID
+# - RemOpenTicketTime
+# - Reputation
+# - Reputation_Name
+# - Reputation_Score
+# - Reputation_Server_IP
+# - Request_Type
+# - Response_Code
+# - Response_Time
+# - Return_Code
+# - RTMP_Application
+# - Rule.ID
+ - Rule.msg
+# - Rule_Name
+# - Search_Query
+# - Security_ID
+ - Sensor_Name
+# - Sensor_Type
+# - Sensor_UUID
+# - Server_ID
+# - Service_Name
+# - Session_Status
+# - SHA1
+# - SHA256
+# - Share_Name
+# - Signature_Name
+# - SNMP_Error_Code
+# - SNMP_Item
+# - SNMP_Item_Type
+# - SNMP_Operation
+# - SNMP_Version
+# - GUIDSrc
+# - Zone_ZoneSrc.Name
+# - Source_Context
+# - Source_Logon_ID
+# - Source_Network
+# - Source_UserID
+# - Source_Zone
+# - Spam_Score
+# - SQL_Command
+# - SQL_Statement
+# - GeoLoc_ASNGeoSrc.Msg
+# - GeoLoc_ASNGeoSrc.Latitude
+# - GeoLoc_ASNGeoSrc.Longitude
+# - GeoLoc_ASNGeoSrc.XCoord
+# - GeoLoc_ASNGeoSrc.YCoord
+# - Start_Page
+# - Status
+# - Step_Count
+# - Step_Name
+# - Sub_Status
+# - Subcategory
+# - Subject
+# - SWF_URL
+# - Table_Name
+# - Target_Class
+# - Target_Context
+# - Target_Process_Name
+# - TC_URL
+ - ThirdPartyType.Name
+# - Threat_Category
+# - Threat_Handled
+# - Threat_Name
+# - To
+# - To_Address
+# - URL
+# - URL_Category
+# - AppIDCat
+# - UserFld10Cat
+# - CommandIDCat
+# - UserFld21Cat
+# - UserFld22Cat
+# - UserFld23Cat
+# - UserFld24Cat
+# - UserFld25Cat
+# - UserFld26Cat
+# - UserFld27Cat
+# - DomainIDCat
+# - HostIDCat
+# - ObjectIDCat
+# - UserIDDstCat
+# - UserIDSrcCat
+# - UserFld8Cat
+# - UserFld9Cat
+# - User_Agent
+# - User_Nickname
+# - UserIDDst
+ - UserIDSrc
+# - UUID
+# - Version
+# - Victim_IP
+# - Virtual_Machine_ID
+# - Virtual_Machine_Name
+# - Volume_ID
+# - VPN_Feature_Name
+# - Vulnerability_References
+# - Web_Domain
+# - Wireless_SSID
